@@ -3,43 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michaels IT-Glossar</title>
+    <title>Michaels IT-Fahrplan</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; background-color: #f9f9f9; }
-        h1 { color: #0070f3; border-bottom: 2px solid #0070f3; padding-bottom: 10px; }
-        h2 { color: #222; margin-top: 40px; }
-        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 5px solid #0070f3; margin-bottom: 20px; }
-        .card.secure { border-left-color: #2ea44f; }
-        .highlight { font-weight: bold; color: #ff4a4a; }
-        .success { font-weight: bold; color: #2ea44f; }
-        footer { margin-top: 60px; font-size: 0.9em; color: #666; text-align: center; }
+        :root {
+            --bg: #0b0f19;
+            --card-bg: #151f32;
+            --text: #f1f5f9;
+            --text-muted: #64748b;
+            --primary: #38bdf8;
+            --frontend: #ec4899;
+            --backend: #10b981;
+            --git: #f59e0b;
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            line-height: 1.6; 
+            max-width: 850px; 
+            margin: 40px auto; 
+            padding: 0 20px; 
+            color: var(--text); 
+            background-color: var(--bg);
+        }
+
+        h1 { 
+            color: var(--primary); 
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            padding: 30px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4); 
+            border-top: 4px solid var(--primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+        }
+
+        /* Farbakzente für die 3 Säulen */
+        .card.c-frontend { border-top-color: var(--frontend); }
+        .card.c-backend { border-top-color: var(--backend); }
+        .card.c-git { border-top-color: var(--git); }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .b-frontend { background: rgba(236, 72, 153, 0.15); color: var(--frontend); }
+        .b-backend { background: rgba(16, 185, 129, 0.15); color: var(--backend); }
+        .b-git { background: rgba(245, 158, 11, 0.15); color: var(--git); }
+
+        h2 { margin: 0 0 10px 0; font-size: 1.5rem; }
+
+        ul { padding-left: 20px; color: #cbd5e1; }
+        li { margin-bottom: 8px; }
+
+        /* Der interaktive Haken-Button */
+        .btn-check {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            transition: all 0.2s;
+        }
+
+        .btn-check:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .completed {
+            border-top-color: #64748b !important;
+            opacity: 0.6;
+        }
+        
+        .completed .btn-check {
+            background: #10b981 !important;
+            color: white;
+            border-color: #10b981;
+        }
+
+        footer { margin-top: 80px; font-size: 0.9em; color: var(--text-muted); text-align: center; }
     </style>
 </head>
 <body>
 
-    <h1>🧠 Mein IT-Glossar für Nicht-IT-ler</h1>
-    <p>Hier halte ich fest, was ich auf meiner IT-Reise lerne – einfach, verständlich und ohne Kauderwelsch.</p>
+    <h1>🚀 Meine IT-Roadmap: Die Basics</h1>
+    <p class="subtitle">Das Fundament, das ich verstehen will, um mein Cockpit-Projekt zu meistern.</p>
 
-    <hr>
+    <div class="grid">
 
-    <h2>Eintrag 1: Der Bus-Faktor</h2>
-    <div class="card">
-        <p><strong>Definition:</strong> Der Bus-Faktor beschreibt das Risiko von Wissens- oder Datenverlust in einem Projekt.</p>
-        <p>Ganz einfach ausgedrückt: <em>"Wie viele Personen aus meinem Projekt müssen von einem Bus überfahren werden (oder im Lotto gewinnen), damit das gesamte Projekt plötzlich stillsteht?"</em></p>
-        <ul>
-            <li><span class="highlight">Bus-Faktor = 1:</span> Absolut kritisch. Nur eine einzige Person hat den Zugriff. Fällt sie aus, brennt die Hütte.</li>
-        </ul>
-    </div>
+        <div class="card c-frontend" id="card-frontend">
+            <span class="badge b-frontend">Säule 1: Das Gesicht</span>
+            <h2>Frontend (HTML & CSS)</h2>
+            <p>Alles, was man im Browser <strong>sehen, anklicken und anfassen</strong> kann. Das visuelle Erlebnis.</p>
+            <ul>
+                <li><strong>HTML (Das Skelett):</strong> Definiert die Struktur (Texte, Überschriften, Boxen).</li>
+                <li><strong>CSS (Das Design):</strong> Macht die Seite hübsch (Farben, Layouts, Animationen, Dark Mode).</li>
+                <li><em>Dein Status:</em> Du hast heute bereits CSS-Animationen live geschaltet!</li>
+            </ul>
+            <button class="btn-check" onclick="toggleLearn('card-frontend')"><span>⬜</span> Als gelernt markieren</button>
+        </div>
 
-    <h2>Eintrag 2: Mein erster Security-Fix (22.05.2026)</h2>
-    <div class="card secure">
-        <p><strong>Was heute passiert ist:</strong> Mein persönliches Cockpit-Dashboard war ohne Passwort für jeden im Internet lesbar. Außerdem lag der Code ungesichert auf der Festplatte (Bus-Faktor von praktisch 0).</p>
-        <p><strong>Die Lösung:</strong> Gemeinsam mit Q haben wir den Code in Git gerettet und ich habe manuell im <span class="success">Cloudflare Zero Trust Dashboard</span> ein digitales Schloss (Access-Schranke) vorgeschaltet. Jetzt sind die Daten sicher vor neugierigen Blicken!</p>
+        <div class="card c-backend" id="card-backend">
+            <span class="badge b-backend">Säule 2: Das Gehirn</span>
+            <h2>Backend & APIs</h2>
+            <p>Die unsichtbare Logik im Hintergrund. Hier werden Daten berechnet, geladen und sicher verwahrt.</p>
+            <ul>
+                <li><strong>Der Server:</strong> Ein Computer im Netz (wie dein VPS), der rund um die Uhr auf Anfragen wartet.</li>
+                <li><strong>APIs (Die Kellner):</strong> Schnittstellen, die Daten (oft als JSON-Text) zwischen Server und Browser hin und her transportieren.</li>
+                <li><em>Dein Status:</em> Dein Cockpit-Backend liefert To-Dos über eine API.</li>
+            </ul>
+            <button class="btn-check" onclick="toggleLearn('card-backend')"><span>⬜</span> Als gelernt markieren</button>
+        </div>
+
+        <div class="card c-git" id="card-git">
+            <span class="badge b-git">Säule 3: Die Zeitmaschine</span>
+            <h2>Git & Versionskontrolle</h2>
+            <p>Das wichtigste Werkzeug für Entwickler, um Code-Chaos zu verhindern und im Team zu arbeiten.</p>
+            <ul>
+                <li><strong>Repository:</strong> Der "Projektordner" auf GitHub, in dem alle Versionen deiner App liegen.</li>
+                <li><strong>Commits:</strong> Die Speicherpunkte (Savegames). Wenn etwas schiefgeht, springst du einfach zurück.</li>
+                <li><em>Dein Status:</em> Du hast heute deinen Code vor dem "Bus-Faktor" gerettet, indem er auf GitHub gesichert wurde!</li>
+            </ul>
+            <button class="btn-check" onclick="toggleLearn('card-git')"><span>⬜</span> Als gelernt markieren</button>
+        </div>
+
     </div>
 
     <footer>
-        <p>Erstellt mit ❤️ und Gemini. Live gehostet auf Netlify.</p>
+        <p>Projektbasiertes Lernen • Automatisch deployed via Netlify</p>
     </footer>
 
+    <script>
+        function toggleLearn(cardId) {
+            const card = document.getElementById(cardId);
+            const btn = card.querySelector('.btn-check');
+            const icon = btn.querySelector('span');
+            
+            card.classList.toggle('completed');
+            
+            if (card.classList.contains('completed')) {
+                icon.textContent = '✅';
+                btn.innerHTML = '<span>✅</span> Erledigt!';
+            } else {
+                icon.textContent = '⬜';
+                btn.innerHTML = '<span>⬜</span> Als gelernt markieren';
+            }
+        }
+    </script>
 </body>
 </html>
